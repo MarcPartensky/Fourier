@@ -12,8 +12,8 @@ import pickle
 import cmath
 import math
 import cv2
-#import os
-
+import sys
+import os
 
 class Fourier:
 
@@ -234,7 +234,9 @@ class VisualFourier:
         drawing, construction, display = range(3)
 
         if self.show_image and self.image:
-            self.context.draw.image(self.context.screen, self.image, (0, 0))
+            w, h = self.image.get_size()
+            r = h/w
+            self.context.draw.image(self.context.screen, self.image, (-1/2, r*1/2))
         if self.show_camera:
             self.context.camera.show()
 
@@ -443,7 +445,7 @@ class VisualFourier:
         return self.graphs[1]
 
     def setConstruction(self, graph):
-        self.graphs[1] = graph
+        self.graphs[1] = graph[1:]
 
     def getDisplay(self):
         return self.graphs[2]
@@ -471,7 +473,16 @@ if __name__ == "__main__":
     pm = "profiledemarc.jpg"
     rh = "rohart.jpg"
 
-    image = folder + "/" + rh
+    if len(sys.argv) > 1:
+        image_name = sys.argv[1]
+    else:
+        print("[Warning] You must place your image in the FourierImages folder before using it.""")
+        image_name = input('image name:')
+
+    image = os.path.join(folder, image_name)
+    # image = os.path.join(folder, vl)
+    print(image)
+
 
     context = Context(
         name="Application of the Fourier Transform.", fullscreen=False)
