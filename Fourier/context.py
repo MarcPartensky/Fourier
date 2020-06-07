@@ -1,8 +1,8 @@
-from mydraw import Draw
-from myrect import Rect
-from mywindow import Window
+from draw import Draw
+from rect import Rect
+from window import Window
 
-import mycolors
+import colors
 import time as tm
 import copy
 
@@ -198,7 +198,7 @@ class Line:
     """Representation of a line in the console.
     This might be used for visual debugging but also for typing commands."""
 
-    def __init__(self, *content, time=None, color=mycolors.WHITE, separator=" "):
+    def __init__(self, *content, time=None, color=colors.WHITE, separator=" "):
         """Object of line created using the text and optional time."""
         if time is None: time=tm.time()
         self.content = list(content)
@@ -252,7 +252,7 @@ class Console:
                  max_lines_shown=10,
                  duration_lines_shown=10,
                  disappearance_lines_shown=10,
-                 colors=[mycolors.WHITE, mycolors.BLACK]):
+                 colors=[colors.WHITE, colors.BLACK]):
         """Create a console."""
         self._draw = draw  # Draw is protected and can only be read
         self.lines = lines  # List of Lines

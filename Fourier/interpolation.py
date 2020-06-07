@@ -12,11 +12,11 @@ There are 2 main types of interpolations:
 from polynomial import Polynomial
 
 #Pseudo Bezier Interpolation
-from mycurves import BezierCurve
-from myabstract import Line,Point
+from curves import BezierCurve
+from abstract import Line,Point
 #additional imports for showing the interpolations more easily
-from mycurves import Trajectory
-import mycolors
+from curves import Trajectory
+import colors
 
 #Deprectated function
 def directInterpolation(points,t):
@@ -98,9 +98,9 @@ class VisualInterpolation(Interpolation):
     interpolation on a graphical context."""
 
     def __init__(self,points,
-                    color=mycolors.RED,
-                    point_color=mycolors.LIGHTRED,
-                    trajectory_color=mycolors.GREEN,
+                    color=colors.RED,
+                    point_color=colors.LIGHTRED,
+                    trajectory_color=colors.GREEN,
                     **kwargs):
         """Create a visual interpolation."""
         self.color=color
@@ -182,7 +182,7 @@ class PseudoBezierInterpolation(VisualInterpolation):
 if __name__=="__main__":
     #To show the points
     from mycontext import Context
-    import mycolors
+    import colors
     #To create the points
     import random
 
@@ -215,7 +215,7 @@ if __name__=="__main__":
 
         #Update data components
         Point.turnPoints([1/100/l for i in range(l)],pts)
-        #trajectory=Trajectory(pts,mycolors.GREEN)
+        #trajectory=Trajectory(pts,colors.GREEN)
         interpolation=PolynomialInterpolation([p.components for p in pts])
         npts=interpolation.sample(200) #Sample 200 points by interpolation
 
@@ -223,9 +223,9 @@ if __name__=="__main__":
         #Additional features
         n=(n+1)%(m+1)
         c1=interpolation(n/m)
-        pt1=Point(*c1,radius=0.1,color=mycolors.lighten(mycolors.RED,2),fill=True)
+        pt1=Point(*c1,radius=0.1,color=colors.lighten(colors.RED,2),fill=True)
         c2=interpolation.trajectory(n/m)
-        pt2=Point(*c2,radius=0.1,color=mycolors.lighten(mycolors.GREEN,2),fill=True)
+        pt2=Point(*c2,radius=0.1,color=colors.lighten(colors.GREEN,2),fill=True)
 
         #Show visual components
         pt1.show(context)

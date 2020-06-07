@@ -1,4 +1,4 @@
-from mycolors import *
+from colors import *
 
 from pygame.locals import *
 

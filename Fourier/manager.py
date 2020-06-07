@@ -1,4 +1,4 @@
-from mycontext import Context
+from context import Context
 from pygame.locals import *
 import pygame
 

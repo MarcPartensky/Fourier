@@ -1,7 +1,7 @@
-from myplane import Plane
-from mywindow import Window
+from plane import Plane
+from window import Window
 from math import sqrt
-import mycolors
+import colors
 
 """
 Structure:
@@ -131,7 +131,7 @@ class Draw:
             image = self.window.scale(image, (rsx, rsy))
         self.window.screen.blit(image, (rx, ry))
 
-    def print(self, text, position=None, size=None, color=mycolors.WHITE, font=None, conversion=True):
+    def print(self, text, position=None, size=None, color=colors.WHITE, font=None, conversion=True):
         """Print a text the window's screen using text and position and optional
         color, pygame font and conversion."""
         if len(color) == 4:
@@ -154,7 +154,7 @@ class Draw:
         a = color[3]
         c1 = color[:3]
         c2 = self.plane.theme["background"]
-        return mycolors.nuance(c1, c2, a)
+        return colors.nuance(c1, c2, a)
 
     def show(self):
         self.plane.showGrid(self.window)
@@ -179,5 +179,5 @@ if __name__ == "__main__":
         draw.check()
         draw.control()
         draw.clear()
-        draw.line(draw.window.screen, mycolors.WHITE, (3, -5), (-2, 6))
+        draw.line(draw.window.screen, colors.WHITE, (3, -5), (-2, 6))
         draw.show()

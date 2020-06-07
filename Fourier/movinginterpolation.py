@@ -1,10 +1,10 @@
 # Show interpolations being made while moving the points.
 
 # Imports
-from myinterpolation import PolynomialInterpolation
-from mycurves import Trajectory
-from mycontext import Context
-from myabstract import Point
+from interpolation import PolynomialInterpolation
+from curves import Trajectory
+from context import Context
+from abstract import Point
 import mycolors
 import random
 

@@ -1,9 +1,9 @@
 from math import pi, sqrt, cos, sin
 from cmath import polar
-from mytools import timer
+from tools import timer
 
 import itertools
-import mycolors
+import colors
 import random
 import math
 import copy
@@ -83,7 +83,7 @@ class Point:
         """Create a point from a vector."""
         return cls(vector.x, vector.y)
 
-    def __init__(self, *components, mode=0, size=[0.1, 0.1], width=1, radius=0.02, fill=False, color=mycolors.WHITE,
+    def __init__(self, *components, mode=0, size=[0.1, 0.1], width=1, radius=0.02, fill=False, color=colors.WHITE,
                  conversion=True):
         """Create a point using its components and optional radius, fill, color and conversion."""
         if components != ():
@@ -231,7 +231,7 @@ class Point:
         if mode == 1 or mode == "cross":
             self.showCross(window, color, size, width, conversion)
 
-    def showText(self, context, text, size=1, color=mycolors.WHITE, conversion=True):
+    def showText(self, context, text, size=1, color=colors.WHITE, conversion=True):
         """Show the text next to the point on the window."""
         context.print(text, self.components, size, color=color, conversion=conversion)
 
@@ -432,7 +432,7 @@ class Vector:
         """Return the cartesian position [x,y] using polar position [norm,angle]."""
         return [position[0] * cos(position[1]), position[0] * sin(position[1])]
 
-    def __init__(self, *components, color=mycolors.WHITE, width=1, arrow=[0.1, 0.5]):
+    def __init__(self, *components, color=colors.WHITE, width=1, arrow=[0.1, 0.5]):
         """Create a vector."""
         if components:
             if isinstance(components[0], list):
@@ -716,7 +716,7 @@ class Segment(Direction):
         pts = [Point(*tp) for tp in tps]
         return cls(*pts, **kwargs)
 
-    def __init__(self, *points, width=1, color=mycolors.WHITE, conversion=True):
+    def __init__(self, *points, width=1, color=colors.WHITE, conversion=True):
         """Create the segment using 2 points, width and color."""
         if len(points) > 0:  # Extracting the points arguments under the same list format
             if type(points[0]) == list:
@@ -993,7 +993,7 @@ class Line(Direction):
         vector = Vector.createFromTwoPoints(point1, point2)
         return cls(point1, vector.angle, **kwargs)
 
-    def __init__(self, point, angle, width=1, color=mycolors.WHITE, correct=True):
+    def __init__(self, point, angle, width=1, color=colors.WHITE, correct=True):
         """Create the line using a point and a vector with optional width and color.
         The line is uses a unique system of components [neighbour point, angle].
         The neighbour point is the nearest point to (0,0) that belongs to the line.
@@ -1298,7 +1298,7 @@ class HalfLine(Line):
         """Create a half line."""
         return HalfLine(line.point, line.angle)
 
-    def __init__(self, point, angle, color=mycolors.WHITE, width=1):
+    def __init__(self, point, angle, color=colors.WHITE, width=1):
         """Create a half line."""
         super().__init__(point, angle, color=color, width=width, correct=False)
 
@@ -1483,10 +1483,10 @@ class Form:
                  point_fill=False,
                  side_width=1,
                  color=None,
-                 point_color=mycolors.WHITE,
-                 side_color=mycolors.WHITE,
-                 area_color=mycolors.WHITE,
-                 cross_point_color=mycolors.WHITE,
+                 point_color=colors.WHITE,
+                 side_color=colors.WHITE,
+                 area_color=colors.WHITE,
+                 cross_point_color=colors.WHITE,
                  cross_point_radius=0.01,
                  cross_point_mode=0,
                  cross_point_width=1,
@@ -2087,7 +2087,7 @@ class Form:
                 return circle
 
             print("not found")
-            circle.border_color = mycolors.YELLOW
+            circle.border_color = colors.YELLOW
             return circle
 
     def getSubForms(self, n):
@@ -2283,7 +2283,7 @@ class Circle:
         """Create a circle from point."""
         return cls(*point, radius=radius, **kwargs)
 
-    def __init__(self, *args, radius, fill=False, color=mycolors.WHITE, border_color=None, area_color=None,
+    def __init__(self, *args, radius, fill=False, color=colors.WHITE, border_color=None, area_color=None,
                  center_color=None, radius_color=None, radius_width=1, text_color=None, text_size=20):
         """Create a circle object using x, y and radius and optional color and width."""
         if len(args) == 1: args = args[0]
@@ -2414,8 +2414,8 @@ if __name__ == "__main__":
 
     surface = Context(name="Abstract Demonstration", fullscreen=True)
 
-    p1 = Point(10, 0, radius=0.05, color=mycolors.YELLOW)
-    p2 = Point(20, 20, radius=0.05, color=mycolors.YELLOW)
+    p1 = Point(10, 0, radius=0.05, color=colors.YELLOW)
+    p2 = Point(20, 20, radius=0.05, color=colors.YELLOW)
     # origin=Point(0,0)
     origin = Point.origin()
 
@@ -2440,7 +2440,7 @@ if __name__ == "__main__":
 
         o = Point(0, 0)
         p3 = l2.projectPoint(o)
-        f = Form([p1, p2, p3], area_color=mycolors.RED, fill=True)
+        f = Form([p1, p2, p3], area_color=colors.RED, fill=True)
 
         # Show
         surface.draw.window.print("l1.angle: " + str(l1.angle), (10, 10))
@@ -2452,15 +2452,15 @@ if __name__ == "__main__":
 
         s1.show(surface)
 
-        o.show(surface, color=mycolors.GREY)
+        o.show(surface, color=colors.GREY)
         o.showText(surface, "origin")
 
         p3.showText(surface, "origin's projection")
-        p3.show(surface, color=mycolors.LIGHTGREY)
+        p3.show(surface, color=colors.LIGHTGREY)
 
         if p:
-            p.show(surface, color=mycolors.RED)
-            p.showText(surface, "intersection point", color=mycolors.RED)
+            p.show(surface, color=colors.RED)
+            p.showText(surface, "intersection point", color=colors.RED)
 
         p1.show(surface)
         p1.showText(surface, "p1")
@@ -2468,13 +2468,13 @@ if __name__ == "__main__":
         p2.show(surface)
         p2.showText(surface, "p2")
 
-        l1.show(surface, color=mycolors.GREEN)
-        l1.point.show(surface, color=mycolors.LIGHTGREEN, mode="cross", width=3)
-        l1.vector.show(surface, l1.point, color=mycolors.LIGHTGREEN, width=3)
+        l1.show(surface, color=colors.GREEN)
+        l1.point.show(surface, color=colors.LIGHTGREEN, mode="cross", width=3)
+        l1.vector.show(surface, l1.point, color=colors.LIGHTGREEN, width=3)
 
-        l2.show(surface, color=mycolors.BLUE)
-        l2.point.show(surface, color=mycolors.LIGHTBLUE, mode="cross", width=3)
-        l2.vector.show(surface, l2.point, color=mycolors.LIGHTBLUE, width=3)
+        l2.show(surface, color=colors.BLUE)
+        l2.point.show(surface, color=colors.LIGHTBLUE, mode="cross", width=3)
+        l2.vector.show(surface, l2.point, color=colors.LIGHTBLUE, width=3)
 
         # Flipping the screen
         surface.flip()

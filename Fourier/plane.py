@@ -1,9 +1,9 @@
-from mywindow import Window
+from window import Window
 from pygame.locals import *
 
 import math
 import numpy as np
-import mycolors
+import colors
 
 class Plane:
     def __init__(self,theme={},view=None):
@@ -115,7 +115,7 @@ class Plane:
             window.print("units:"+str(self.units),(10,10),size=20)
         #self.showUnits(window) #Does not work for now
 
-    def showOrigin(self,window,color=mycolors.WHITE,radius=3):
+    def showOrigin(self,window,color=colors.WHITE,radius=3):
         """Show the origin of the plane."""
         position=self.getToScreen([0,0],window)
         window.draw.circle(window.screen,color,position,radius,0)

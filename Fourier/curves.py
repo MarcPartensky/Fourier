@@ -1,7 +1,7 @@
-from myabstract import Point,Segment,Form,Line
+from abstract import Point,Segment,Form,Line
 
 import random
-import mycolors
+import colors
 import itertools
 
 class Trajectory:
@@ -17,7 +17,7 @@ class Trajectory:
         pts=[Point(*t) for t in tuples]
         return cls(pts,**kwargs)
 
-    def __init__(self,points,segment_color=mycolors.WHITE,point_color=mycolors.WHITE):
+    def __init__(self,points,segment_color=colors.WHITE,point_color=colors.WHITE):
         """Create a trajectory using the list of points."""
         self.points=points
         self.segment_color=segment_color
@@ -116,7 +116,7 @@ class Trajectory:
     center=property(getCenter)
 
 class BezierCurve:
-    def __init__(self,points,point_color=mycolors.WHITE,segment_color=mycolors.WHITE):
+    def __init__(self,points,point_color=colors.WHITE,segment_color=colors.WHITE):
         """Create a bezier curve object using 3 points."""
         self.points=points
         self.segment_color=segment_color
@@ -208,7 +208,7 @@ class BezierForm(Form):
 
 class Arrow(BezierCurve):
     """Join 2 objects with an arrow."""
-    def __init__(self,points,point_color=mycolors.WHITE,segment_color=mycolors.WHITE,vector_color=mycolors.WHITE):
+    def __init__(self,points,point_color=colors.WHITE,segment_color=colors.WHITE,vector_color=colors.WHITE):
         super().__init__(self,points,point_color,segment_color,vector_color)
 
     def show(self,surface,p=50):
@@ -234,10 +234,10 @@ if __name__=="__main__":
     surface=Surface(name="Curves demonstration")
     l=10
     points=[Point(2*x,random.randint(-5,5)) for x in range(l)]
-    t=Trajectory(points,segment_color=mycolors.GREEN)
-    b=BezierCurve(points,segment_color=mycolors.RED)
+    t=Trajectory(points,segment_color=colors.GREEN)
+    b=BezierCurve(points,segment_color=colors.RED)
     #st=t.sampleSegments(3)
-    #t1=Trajectory(st,segment_color=mycolors.BLUE)
+    #t1=Trajectory(st,segment_color=colors.BLUE)
     #print(b.points[-1])
     #print(b(1))
     #print(b.segments[-1])
@@ -263,9 +263,9 @@ if __name__=="__main__":
 
         #l1=Line.createFromTwoPoints(p1,p2)
 
-        p1.show(surface,color=mycolors.YELLOW,radius=0.1,fill=True)
-        p2.show(surface,color=mycolors.YELLOW,radius=0.1,fill=True)
-        #l1.show(surface,color=mycolors.LIGHTGREY)
+        p1.show(surface,color=colors.YELLOW,radius=0.1,fill=True)
+        p2.show(surface,color=colors.YELLOW,radius=0.1,fill=True)
+        #l1.show(surface,color=colors.LIGHTGREY)
 
 
         surface.flip()

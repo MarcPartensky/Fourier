@@ -1,12 +1,12 @@
-from myinterpolation import PolynomialInterpolation
-from myabstract import Point, Vector, Circle
-from mycurves import Trajectory
+from interpolation import PolynomialInterpolation
+from abstract import Point, Vector, Circle
+from curves import Trajectory
 from pygame.locals import *
 #from PIL import Image
 
 
 import numpy as np
-import mycolors
+import colors
 import pygame
 import pickle
 import cmath
@@ -122,12 +122,12 @@ class VisualFourier:
         self.show_sample = True
         self.show_camera = False
         # Graph color
-        self.color_polynomial = mycolors.BLUE
-        self.color_drawing = mycolors.GREEN
-        self.color_display = mycolors.RED
-        self.color_vectors = mycolors.WHITE
-        self.color_circles = mycolors.GREY
-        self.color_sample = mycolors.YELLOW
+        self.color_polynomial = colors.BLUE
+        self.color_drawing = colors.GREEN
+        self.color_display = colors.RED
+        self.color_vectors = colors.WHITE
+        self.color_circles = colors.GREY
+        self.color_sample = colors.YELLOW
 
         # Set the image for sampling
         if image is None:
@@ -289,7 +289,7 @@ class VisualFourier:
         """Return the list of vectors."""
         return [Vector.createFromTwoTuples(graph[i], graph[i + 1]) for i in range(len(graph) - 1)]
 
-    def showVectors(self, graph, vectors, color=mycolors.WHITE):
+    def showVectors(self, graph, vectors, color=colors.WHITE):
         """Show the vectors on the screen."""
         for i in range(len(vectors) - 1):
             vectors[i].show(self.context, Point(*graph[i]), color)
@@ -463,7 +463,7 @@ class VisualFourier:
 
 
 if __name__ == "__main__":
-    from mycontext import Context
+    from context import Context
 
     folder = "FourierImages"
 
