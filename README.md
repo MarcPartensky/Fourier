@@ -12,9 +12,8 @@ cd Fourier
 #Install requirements
 pip install -r requirements.txt
 
-#
+#Go to source folder [Do NOT forget this step]
 cd src
-
 ```
 
 # Start
@@ -59,6 +58,9 @@ Get the output image directly without waiting for the simulation.
 * Enter: Go back to the center.
 * Up/Down/Right/Left Arrow: Move arround.
 * Right/Left Shift: Zoom in or out.
+* Quit/Escape: Quit.
 * Z: Cancel last sample.
 * R: Remove all samples.
 * S: Save the fourier-coefficients.
+
+# Enjoy!
