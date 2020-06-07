@@ -76,7 +76,7 @@ class VisualFourier:
                  context,
                  image=None,
                  coefficients=[],
-                 directory="FourierObjects",
+                 directory="../FourierObjects",
                  filename="Fourier",
                  coefficients_filename="fourier_coefficients.txt"
                  ):
@@ -464,29 +464,22 @@ class VisualFourier:
 
 if __name__ == "__main__":
     from context import Context
+    import logging
 
-    folder = "FourierImages"
-
-    sj = "saint jalm.jpg"
-    vl = "valentin.png"
-    tm = "tetedemarc.png"
-    pm = "profiledemarc.jpg"
-    rh = "rohart.jpg"
+    folder = "../FourierImages"
 
     if len(sys.argv) > 1:
         image_name = sys.argv[1]
     else:
-        print("[Warning] You must place your image in the FourierImages folder before using it.""")
+        logging.warning("You must place your image in the FourierImages folder before using it.""")
         image_name = input('image name:')
 
     image = os.path.join(folder, image_name)
-    # image = os.path.join(folder, vl)
     print(image)
 
 
-    context = Context(
-        name="Application of the Fourier Transform.", fullscreen=False)
-    fourier = VisualFourier(context, image=image)
+    context = Context(name="Application of the Fourier Transform.", fullscreen=False)
+    fourier = VisualFourier(context, image=image, directory="../FourierObjects")
     fourier.load()
     fourier()
     fourier.save()

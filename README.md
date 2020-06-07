@@ -5,8 +5,16 @@ Draw a picture or sample one, press space, then watch an epic simulation of epic
 # Install
 
 ```bash
+#Clone the repository
 git clone git@github.com:MarcPartensky/Fourier.git
 cd Fourier
+
+#Install requirements
+pip install -r requirements.txt
+
+#
+cd src
+
 ```
 
 # Start
