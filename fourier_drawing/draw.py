@@ -1,7 +1,7 @@
-from plane import Plane
-from window import Window
+from .plane import Plane
+from .window import Window
 from math import sqrt
-import colors
+from . import colors
 
 """
 Structure:

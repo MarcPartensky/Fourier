@@ -1,7 +1,7 @@
-from abstract import Point,Segment,Form,Line
+from .abstract import Point,Segment,Form,Line
 
 import random
-import colors
+from . import colors
 import itertools
 
 class Trajectory:

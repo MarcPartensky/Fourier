@@ -1,8 +1,8 @@
-from draw import Draw
-from rect import Rect
-from window import Window
+from .draw import Draw
+from .rect import Rect
+from .window import Window
 
-import colors
+from . import colors
 import time as tm
 import copy
 

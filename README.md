@@ -2,6 +2,10 @@
 
 Draw a picture or sample one, press space, then watch an epic simulation of epicycles being drawned identically as your picture. Thanks the the fourier transform your drawing will be reproduced in a real-time simulation only using epicycles.
 
+# Demo
+
+![https://www.youtube.com/watch?v=86bYtJCwQ_o](https://j.gifs.com/jZmnWP.gif)
+
 # Install
 
 ```bash

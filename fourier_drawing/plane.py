@@ -1,9 +1,9 @@
-from window import Window
+from .window import Window
 from pygame.locals import *
 
 import math
 import numpy as np
-import colors
+from . import colors
 
 class Plane:
     def __init__(self,theme={},view=None):

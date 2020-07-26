@@ -9,14 +9,14 @@ There are 2 main types of interpolations:
 """
 
 #Polynomial Interpolation
-from polynomial import Polynomial
+from .polynomial import Polynomial
 
 #Pseudo Bezier Interpolation
-from curves import BezierCurve
-from abstract import Line,Point
+from .curves import BezierCurve
+from .abstract import Line,Point
 #additional imports for showing the interpolations more easily
-from curves import Trajectory
-import colors
+from .curves import Trajectory
+from . import colors
 
 #Deprectated function
 def directInterpolation(points,t):

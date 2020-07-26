@@ -1,12 +1,10 @@
-from interpolation import PolynomialInterpolation
-from abstract import Point, Vector, Circle
-from curves import Trajectory
+from .interpolation import PolynomialInterpolation
+from .abstract import Point, Vector, Circle
+from .curves import Trajectory
 from pygame.locals import *
-#from PIL import Image
-
+from . import colors
 
 import numpy as np
-import colors
 import pygame
 import pickle
 import cmath

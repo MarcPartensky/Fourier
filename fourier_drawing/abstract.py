@@ -1,9 +1,10 @@
 from math import pi, sqrt, cos, sin
 from cmath import polar
-from tools import timer
+
+from .tools import timer
+from . import colors
 
 import itertools
-import colors
 import random
 import math
 import copy
