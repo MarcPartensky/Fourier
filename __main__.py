@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from fourier_drawing.context import Context
 from fourier_drawing.fourier import VisualFourier
 

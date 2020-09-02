@@ -15,9 +15,6 @@ cd Fourier
 
 #Install requirements
 pip install -r requirements.txt
-
-#Go to source folder [Do NOT forget this step]
-cd src
 ```
 
 # Start
@@ -27,13 +24,13 @@ Put your model image `image.png` in the `FourierImages` folder.
 * Option 1: Give image at launch.
 
 ```bash
-python fourier.py image.png
+python __main__.py image.png
 ```
 
 * Option 2: Launch then give the image.
 
 ```bash
-python fourier.py
+python __main__.py
 > image name:
 ```
 
