@@ -17,7 +17,7 @@ cd Fourier
 pip install -r requirements.txt
 ```
 
-# Start
+# Usage
 
 Put your model image `image.png` in the `FourierImages` folder.
 
