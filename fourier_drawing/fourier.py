@@ -366,7 +366,8 @@ class VisualFourier:
     def save(self):
         """Save the sampled graph and fourier's coefficients."""
         path = self.directory + "/" + self.filename
-        pickle.dump(self.dictionary, open(path, "wb"))
+        with open(path, "wb") as f:
+            pickle.dump(self.dictionary, f)
         self.context.console.append("The Fourier components are saved.")
 
     def saveCoefficients(self):
@@ -383,7 +384,11 @@ class VisualFourier:
     def load(self):
         """Load the fourier's coefficients."""
         path = self.directory + "/" + self.filename
-        dictionary = pickle.load(open(path, "rb"))
+        print(self.directory, self.filename)
+        path = os.path.abspath(path)
+        print('coefficients:', path)
+        with open(path, "rb") as f:
+            dictionary = pickle.load(f)
         self.coefficients = dictionary["coefficients"]
         self.display = dictionary["display"]
         self.construction = dictionary["construction"]
@@ -482,18 +487,22 @@ if __name__ == "__main__":
     from context import Context
     import logging
 
-    folder = "../FourierImages"
+    images_folder = "../FourierImages"
+    images_folder = os.path.abspath(images_folder)
+    print('images_folder:', images_folder)
 
     if len(sys.argv) > 1:
         image_name = sys.argv[1]
     else:
         logging.warning(
-            "You must place your image in the FourierImages folder before using it." ""
+            "You must place your image in the FourierImages folder before using it."
         )
         image_name = input("image name:")
 
     image = os.path.join(folder, image_name)
     print(image)
+    image = os.path.abspath(image)
+    print("image path:", image)
 
     context = Context(name="Application of the Fourier Transform.", fullscreen=False)
     fourier = VisualFourier(context, image=image, directory="../FourierObjects")
