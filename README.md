@@ -5,7 +5,6 @@ Draw a picture or sample one, press space, then watch an epic simulation of epic
 # Demo
 
 ![https://www.youtube.com/watch?v=86bYtJCwQ_o](https://j.gifs.com/jZmnWP.gif)
-
 # Install
 
 ```bash
