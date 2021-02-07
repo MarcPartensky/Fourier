@@ -63,4 +63,13 @@ Get the output image directly without waiting for the simulation.
 * R: Remove all samples.
 * S: Save the fourier-coefficients.
 
+# Hide or Show the graphical components
+You can press the following numbers to toggle:
+* `1`: Image
+* `2`: Green lines
+* `3`: Red graph
+* `4`: White vectors
+* `5`: Grey circles
+* `6`: Yellow sample
+
 # Enjoy!
