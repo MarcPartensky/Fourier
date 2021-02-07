@@ -43,28 +43,28 @@ Then give your image:
 
 There are 3 modes in this program:
 
-* Mode 1: Sampling
+* Mode 1: *Sampling*
 Sample or draw a picture.
 
-* Mode 2: Drawing
+* Mode 2: *Drawing*
 Watch the epicycles simulation which uses fourier transform.
 
-* Mode 3: Display
+* Mode 3: *Display*
 Get the output image directly without waiting for the simulation.
 
 # Controls
 
-* Space: Switch to next mode.
-* Enter: Go back to the center.
-* Up/Down/Right/Left Arrow: Move arround.
-* Right/Left Shift: Zoom in or out.
-* Quit/Escape: Quit.
-* Z: Cancel last sample.
-* R: Remove all samples.
-* S: Save the fourier-coefficients.
+* `Space`: Switch to next mode.
+* `Enter`: Go back to the center.
+* `Up/Down/Right/Left Arrow`: Move arround.
+* `Right/Left Shift`: Zoom in or out.
+* `Quit/Escape`: Quit.
+* `Z`: Cancel last sample.
+* `R`: Remove all samples.
+* `S`: Save the fourier-coefficients.
 
-# Hide or Show the graphical components
-You can press the following numbers to toggle:
+## Hide or Show the graphical components
+Press the following numbers to toggle:
 * `1`: Image
 * `2`: Green lines
 * `3`: Red graph
