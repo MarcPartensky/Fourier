@@ -19,19 +19,23 @@ import cv2
 class Camera:
     """The camera relies on opencv, pygame and numpy."""
 
-    def __init__(self, draw, position=[0, 0],
-                 build_capture=False,
-                 build_screen_writer=False,
-                 build_capture_writer=False,
-                 filename="unnamed.mp4",
-                 framerate=15):
+    def __init__(
+        self,
+        draw,
+        position=[0, 0],
+        build_capture=False,
+        build_screen_writer=False,
+        build_capture_writer=False,
+        filename="unnamed.mp4",
+        framerate=15,
+    ):
         """Create an opencv camera. By default the capture is not active, it must
         be built using the build method, or by setting build to True in the
         init method."""
         self._draw = draw
         self.position = position
         self.filename = filename
-        self.fourccs = {'mp4': 'MP4V', 'avi': 'DIVX'}
+        self.fourccs = {"mp4": "MP4V", "avi": "DIVX"}
         self.framerate = framerate
         # Building videos components
         if build_capture:
@@ -50,22 +54,30 @@ class Camera:
     def buildCaptureWriter(self, filename=None, framerate=None):
         """Write the videos of the camera, this is just an odd concept, nothing
         really functional."""
-        if not filename: filename = self.filename
-        _, extension = filename.split('.')
+        if not filename:
+            filename = self.filename
+        _, extension = filename.split(".")
         fourcc = self.fourccs[extension]
         print(fourcc)
         fourcc = cv2.VideoWriter_fourcc(*fourcc)
-        if not framerate: framerate = self.framerate
-        self.capture_writer = cv2.VideoWriter(filename, fourcc, framerate, frameSize=self._draw.window.size)
+        if not framerate:
+            framerate = self.framerate
+        self.capture_writer = cv2.VideoWriter(
+            filename, fourcc, framerate, frameSize=self._draw.window.size
+        )
 
     def buildScreenWriter(self, filename=None, framerate=None):
         """Write the videos of the screen."""
-        if not filename: filename = self.filename
-        _, extension = filename.split('.')
+        if not filename:
+            filename = self.filename
+        _, extension = filename.split(".")
         fourcc = self.fourccs[extension]
         fourcc = cv2.VideoWriter_fourcc(*fourcc)
-        if not framerate: framerate = self.framerate
-        self.screen_writer = cv2.VideoWriter(filename, fourcc, framerate, frameSize=self._draw.window.size)
+        if not framerate:
+            framerate = self.framerate
+        self.screen_writer = cv2.VideoWriter(
+            filename, fourcc, framerate, frameSize=self._draw.window.size
+        )
 
     def writeCapture(self):
         """Write the capture."""
@@ -200,7 +212,8 @@ class Line:
 
     def __init__(self, *content, time=None, color=colors.WHITE, separator=" "):
         """Object of line created using the text and optional time."""
-        if time is None: time=tm.time()
+        if time is None:
+            time = tm.time()
         self.content = list(content)
         self.time = time
         self.color = color
@@ -240,19 +253,22 @@ class Line:
 
 
 class Console:
-    def __init__(self, draw,
-                 lines=[],
-                 interline=15,
-                 left_padding=10,
-                 down_padding=20,
-                 conversion=False,
-                 size=20,
-                 position=[0, 0],
-                 font=None,
-                 max_lines_shown=10,
-                 duration_lines_shown=10,
-                 disappearance_lines_shown=10,
-                 colors=[colors.WHITE, colors.BLACK]):
+    def __init__(
+        self,
+        draw,
+        lines=[],
+        interline=15,
+        left_padding=10,
+        down_padding=20,
+        conversion=False,
+        size=20,
+        position=[0, 0],
+        font=None,
+        max_lines_shown=10,
+        duration_lines_shown=10,
+        disappearance_lines_shown=10,
+        colors=[colors.WHITE, colors.BLACK],
+    ):
         """Create a console."""
         self._draw = draw  # Draw is protected and can only be read
         self.lines = lines  # List of Lines
@@ -277,7 +293,11 @@ class Console:
             if content[0] == "marc":
                 content[0] += " is awesome."
             elif content[0] == "time":
-                content[0] = "The time is " + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime()) + "."
+                content[0] = (
+                    "The time is "
+                    + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime())
+                    + "."
+                )
             elif content[0] == "minecraft":
                 content[0] += "is the best game ever."
             elif content[0][:6] == "print(":
@@ -369,9 +389,16 @@ class Console:
             to = self.lines[-i - 1].time
             t = (tm.time() - to) / self.duration_lines_shown
             if t < 1:
-                c1 = self.lines[-i-1].color + (t ** dls,)
+                c1 = self.lines[-i - 1].color + (t ** dls,)
                 # c2 = self.colors[1] + (t ** dls,)
-                self._draw.print(self.lines[-i - 1], position, self.size, c1, self.font, self.conversion)
+                self._draw.print(
+                    self.lines[-i - 1],
+                    position,
+                    self.size,
+                    c1,
+                    self.font,
+                    self.conversion,
+                )
 
 
 class Context(Rect):
@@ -448,8 +475,7 @@ class Context(Rect):
 
     def setCoordonnates(self, coordonnates):
         """Set the coordonnates of the surface shown."""
-        self.draw.plane.setCorners(
-            Plane.getCornersFromCoordonnates(coordonnates))
+        self.draw.plane.setCorners(Plane.getCornersFromCoordonnates(coordonnates))
 
     def getPosition(self):
         """Return the position of the surface shown."""
@@ -676,4 +702,4 @@ if __name__ == "__main__":
         context.flip()
     context.camera.capture.release()
     context.camera.screen_writer.release()
-    print('released')
+    print("released")

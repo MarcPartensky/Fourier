@@ -3,7 +3,9 @@ from .colors import *
 from pygame.locals import *
 
 
-import pygame; pygame.init()
+import pygame
+
+pygame.init()
 
 import random
 import time
@@ -20,15 +22,17 @@ class Window:
 
     # Creation of the window
 
-    def __init__(self,
-                 name="Unnamed",
-                 size=None,
-                 text_font="monospace",
-                 text_size=50,
-                 text_color=WHITE,
-                 background_color=BLACK,
-                 fullscreen=False,
-                 build=True):
+    def __init__(
+        self,
+        name="Unnamed",
+        size=None,
+        text_font="monospace",
+        text_size=50,
+        text_color=WHITE,
+        background_color=BLACK,
+        fullscreen=False,
+        build=True,
+    ):
         """Create a window object using name, size text_font, text_size,
         text_color, background and set."""
         Window.made += 1
@@ -97,8 +101,10 @@ class Window:
         """Save an image using the image and the name.
         - If the image is not given, a screenshot will be made.
         - If the name is not given, the named will be unnamed."""
-        if name == None: name = "unnamed"
-        if image == None: pygame.image.save(self.screen, name)
+        if name == None:
+            name = "unnamed"
+        if image == None:
+            pygame.image.save(self.screen, name)
         self.screenshot_taken += 1
 
     def rename(self, name):
@@ -270,11 +276,23 @@ class Window:
         sfx, sfy = surface.get_size()
         return ((sx - sfx) // 2, (sy - sfy) // 2)
 
-    def alert(self, *text, size=None, color=None, font=None, background=None, bold=False, italic=False):
+    def alert(
+        self,
+        *text,
+        size=None,
+        color=None,
+        font=None,
+        background=None,
+        bold=False,
+        italic=False
+    ):
         """Quickly display text on window."""
-        if not size: size = self.text_size
-        if not color: color = self.text_color
-        if not font: font = self.text_font
+        if not size:
+            size = self.text_size
+        if not color:
+            color = self.text_color
+        if not font:
+            font = self.text_font
         text = " ".join(map(str, text))
         font = pygame.font.SysFont(font, size, bold, italic)
         surface = font.render(text, 1, color, background)
@@ -282,11 +300,24 @@ class Window:
         self.screen.blit(surface, position)
         self.flip()
 
-    def print(self, text, position, size=None, color=None, font=None, background=None, bold=False, italic=False):
+    def print(
+        self,
+        text,
+        position,
+        size=None,
+        color=None,
+        font=None,
+        background=None,
+        bold=False,
+        italic=False,
+    ):
         """Display text on screen using position, size, color and font."""
-        if not size: size = self.text_size
-        if not color: color = self.text_color
-        if not font: font = self.text_font
+        if not size:
+            size = self.text_size
+        if not color:
+            color = self.text_color
+        if not font:
+            font = self.text_font
         font = pygame.font.SysFont(font, size, bold, italic)
         surface = font.render(str(text), 1, color[:3], background)
         if len(color) == 4:

@@ -9,10 +9,12 @@ import sys
 folder = "FourierImages"
 
 if len(sys.argv) > 1:
-  image_name = sys.argv[1]
+    image_name = sys.argv[1]
 else:
-  logging.warning("You must place your image in the FourierImages folder before using it.""")
-  image_name = input('image name:')
+    logging.warning(
+        "You must place your image in the FourierImages folder before using it." ""
+    )
+    image_name = input("image name:")
 
 image = os.path.join(folder, image_name)
 print(image)

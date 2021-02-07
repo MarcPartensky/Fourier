@@ -16,6 +16,7 @@ Features:
 """
 
 from copy import deepcopy
+
 # import matplotlib.pyplot as plt #Old way to show the polynomials on screen. Not very nice though...
 
 # from mygrapher.grapher import Grapher #Used to show the polynome on screen with the ability to move within it.
@@ -24,13 +25,14 @@ import random  # Used only to generate random polynomials.
 import functools
 
 # Changing the type of the coefficients
-#from decimal import Decimal
-#from numpy import float128
+# from decimal import Decimal
+# from numpy import float128
 
 # p=Polynomial.createFromInterpolation(x,y)
 
 
-def prod(l): return functools.reduce(lambda a, b: a * b, l)
+def prod(l):
+    return functools.reduce(lambda a, b: a * b, l)
 
 
 class Polynomial:
@@ -55,11 +57,22 @@ class Polynomial:
     def createFromInterpolation(x, y):
         """Create a polynomial using the lagrangian interpolation."""
         n = max(len(x), len(y))
-        p = Polynomial.sum([Polynomial([y[j]]) * Polynomial.prod([Polynomial([-x[i] / (
-            x[j] - x[i]), 1 / (x[j] - x[i])]) for i in range(n) if x[i] != x[j]]) for j in range(n)])
+        p = Polynomial.sum(
+            [
+                Polynomial([y[j]])
+                * Polynomial.prod(
+                    [
+                        Polynomial([-x[i] / (x[j] - x[i]), 1 / (x[j] - x[i])])
+                        for i in range(n)
+                        if x[i] != x[j]
+                    ]
+                )
+                for j in range(n)
+            ]
+        )
         return Polynomial(p.coefficients)
 
-    def __init__(self, coefficients, definition=[-10**20, 10**20]):
+    def __init__(self, coefficients, definition=[-(10 ** 20), 10 ** 20]):
         """Create a polynomial using its coefficients."""
         self.coefficients = coefficients
         self.definition = definition
@@ -252,7 +265,7 @@ class Polynomial:
 
     def __call__(self, x):
         """Evaluate the polynomial given an x value."""
-        return sum([c * x**n for (n, c) in enumerate(self.coefficients)])
+        return sum([c * x ** n for (n, c) in enumerate(self.coefficients)])
 
     def getFactoredForm(self):
         """Return the list of the factors of the factored form of the polynomial."""
@@ -281,8 +294,9 @@ class Polynomial:
             extrema = [neglim] + old_extrema + [poslim]
             for i in range(len(extrema) - 1):
                 if derivative(extrema[i]) * derivative(extrema[i + 1]) <= 0:
-                    new_extrema.append(derivative.dichotomy(
-                        extrema[i], extrema[i + 1], precision))
+                    new_extrema.append(
+                        derivative.dichotomy(extrema[i], extrema[i + 1], precision)
+                    )
             old_extrema = new_extrema[:]
         return new_extrema
 
@@ -290,8 +304,7 @@ class Polynomial:
         """Return a float value x between a and b for which the polynomial canceled itself.
         Does that based on theoreme of intermediate value with dichotomy."""
         if self(xa) * self(xb) > 0:
-            raise Exception(
-                "The polynomial cannot cancel itself within this interval.")
+            raise Exception("The polynomial cannot cancel itself within this interval.")
         a = min(xa, xb)
         b = max(xa, xb)
         x = (a + b) / 2
@@ -320,9 +333,9 @@ class Polynomial:
             return [-b / a]  # a cannot be null
         elif self.degree == 2:
             c, b, a = self.coefficients
-            discriminant = b**2 - 4 * a * c
-            x1 = (-b - discriminant**(1 / 2)) / (2 * a)  # a cannot be null
-            x2 = (-b + discriminant**(1 / 2)) / (2 * a)  # a cannot be null
+            discriminant = b ** 2 - 4 * a * c
+            x1 = (-b - discriminant ** (1 / 2)) / (2 * a)  # a cannot be null
+            x2 = (-b + discriminant ** (1 / 2)) / (2 * a)  # a cannot be null
             return [x1, x2]
         else:
             return self.getRootsByDichotomy(precision)
@@ -338,7 +351,7 @@ class Polynomial:
 
     def getRootsWithMultiplicity(self):
         """Return a list of couples of roots with their multiplicity associated.
-        Example: [(r1,m1),(r2,m2),...] """
+        Example: [(r1,m1),(r2,m2),...]"""
         return [(r, self.getMultiplicity(r)) for r in list(set(self.roots))]
 
     def __floordiv__(self, other):
@@ -347,13 +360,14 @@ class Polynomial:
 
     def show(self):
         """Show the polynomial with grapher."""
-        Grapher([self])()  # Instance Grapher only takes the list of the functions in parameter and can be called to display them.
+        Grapher(
+            [self]
+        )()  # Instance Grapher only takes the list of the functions in parameter and can be called to display them.
 
     def matplotlibShow(self, zone=[-5, 5], precision=0.1):
         """Show the polynomial with matplotlib using optional zone and precision."""
         z, Z = zone
-        X = list(
-            [precision * x for x in range(int(z / precision), int(Z / precision))])
+        X = list([precision * x for x in range(int(z / precision), int(Z / precision))])
         Y = list([self(x) for x in X])
         plt.plot(X, Y, label="Polynomial")
         plt.show()
@@ -468,6 +482,7 @@ class RationalFunction:
 class PartialFraction(RationalFunction):  # This is just an idea
     """The only difference with the rational function is that the denominator is
     of the form: [a,b] which corresponds to q=(x-a)**b."""
+
     # It might not be a good idea.
 
     def __init__(self, p, q):
@@ -502,7 +517,7 @@ if __name__ == "__main__":
     print("Roots of B:", B.roots)
     print("Multiplicity of the root 2 of B:", B.getMultiplicity(2))
     print("Roots with multiplicities of B:", B.getRootsWithMultiplicity())
-    #print("Show A on screen:")
+    # print("Show A on screen:")
     # C=Polynomial.createFromInterpolation([1,2,-4,-6,4],[1,-3,-2,5,-2])
     print(C.coefficients)
     print(FP.decompose())

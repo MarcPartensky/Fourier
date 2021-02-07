@@ -71,7 +71,8 @@ class Draw:
         if conversion:
             rx, ry = [radius * self.plane.units[i] for i in range(2)]
             radius = int((rx + ry) / 2)
-        if radius < 1: radius = 1
+        if radius < 1:
+            radius = 1
         # r=0.1
         self.window.draw.circle(screen, color, position, radius, not (fill))
 
@@ -80,18 +81,23 @@ class Draw:
         size = self.plane.getToScreen([side_size, side_size], self.window)
         self.window.draw.rect(screen, color, position + size, not fill)
 
-    def polygon(self, screen, color, positions, fill=False):  # No clue of what i'm doing to do here.
+    def polygon(
+        self, screen, color, positions, fill=False
+    ):  # No clue of what i'm doing to do here.
         screen_positions = self.plane.getAllToScreen(positions, self.window)
         self.window.draw.polygon(screen, color, screen_positions, fill)
 
-    def line(self, screen, color, start_position, end_position, width=1, conversion=True):
+    def line(
+        self, screen, color, start_position, end_position, width=1, conversion=True
+    ):
         if conversion:
             start_position = self.plane.getToScreen(start_position, self.window)
             end_position = self.plane.getToScreen(end_position, self.window)
         self.window.draw.line(screen, color, start_position, end_position, width)
 
     def lines(self, screen, color, positions, connected=True, width=1, conversion=True):
-        if conversion: positions = self.plane.getAllToScreen(positions, self.window)
+        if conversion:
+            positions = self.plane.getAllToScreen(positions, self.window)
         self.window.draw.lines(screen, color, connected, positions, width)
 
     def arc(self, screen, color, rect, start_angle, stop_angle, width=1):
@@ -113,7 +119,7 @@ class Draw:
         if corners is not None:
             x, y, sx, sy = corners
             rx, ry = self.plane.getToScreen([x, y], self.window)
-            rsx = int(sx * ux);
+            rsx = int(sx * ux)
             rsy = int(sy * uy)
             image = self.window.scale(image, (rsx, rsy))
         else:
@@ -121,30 +127,42 @@ class Draw:
             rx, ry = self.plane.getToScreen([x, y], self.window)
             m = max(w, h)
             if w > h:
-                sx = smax;
+                sx = smax
                 sy = h / w * smax
             else:
-                sy = smax;
+                sy = smax
                 sx = w / h * smax
-            rsx = int(sx * ux);
+            rsx = int(sx * ux)
             rsy = int(sy * uy)
             image = self.window.scale(image, (rsx, rsy))
         self.window.screen.blit(image, (rx, ry))
 
-    def print(self, text, position=None, size=None, color=colors.WHITE, font=None, conversion=True):
+    def print(
+        self,
+        text,
+        position=None,
+        size=None,
+        color=colors.WHITE,
+        font=None,
+        conversion=True,
+    ):
         """Print a text the window's screen using text and position and optional
         color, pygame font and conversion."""
         if len(color) == 4:
             color = self.applyTransparency(color)
         if conversion:
-            if not position: position = (0, 0)
-            if not size: size = 1
+            if not position:
+                position = (0, 0)
+            if not size:
+                size = 1
             position = self.plane.getToScreen(position, self.window)
             ux, uy = self.plane.units
             size = int(size * ux / 50)
         else:
-            if not position: position = (10, 10)
-            if not size: size = 20
+            if not position:
+                position = (10, 10)
+            if not size:
+                size = 20
         self.window.print(text, position, size, color, font)
 
     def applyTransparency(self, color):

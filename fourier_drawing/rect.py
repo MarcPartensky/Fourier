@@ -8,8 +8,10 @@ class Rect:
     @classmethod
     def cross(cls, r1, r2):
         """Determine the rectangle resulting of the intersection of two rectangles."""
-        if r1.xmax < r2.xmin or r1.xmin > r2.xmax: return
-        if r1.ymax < r2.ymin or r1.ymin > r2.ymax: return
+        if r1.xmax < r2.xmin or r1.xmin > r2.xmax:
+            return
+        if r1.ymax < r2.ymin or r1.ymin > r2.ymax:
+            return
         xmin = max(r1.xmin, r2.xmin)
         ymin = max(r1.ymin, r2.ymin)
         xmax = min(r1.xmax, r2.xmax)
@@ -55,10 +57,16 @@ class Rect:
     def __setitem__(self, key, value):
         self.components[key] = value
 
-    x = property(lambda cls: cls.__getitem__(0), lambda cls, value: cls.__setitem__(0, value),
-                 doc="x component of the center")
-    y = property(lambda cls: cls.__getitem__(1), lambda cls, value: cls.__setitem__(1, value),
-                 doc="y component of the center")
+    x = property(
+        lambda cls: cls.__getitem__(0),
+        lambda cls, value: cls.__setitem__(0, value),
+        doc="x component of the center",
+    )
+    y = property(
+        lambda cls: cls.__getitem__(1),
+        lambda cls, value: cls.__setitem__(1, value),
+        doc="y component of the center",
+    )
 
     def getSize(self):
         return [self.w, self.h]
@@ -79,7 +87,17 @@ class Rect:
     def __str__(self, n=2):
         """Return the string representation of a rect."""
         r = self.__round__(n)
-        return "Rect(x=" + str(r.x) + ",y=" + str(r.y) + ",w=" + str(r.w) + ",h=" + str(r.h) + ")"
+        return (
+            "Rect(x="
+            + str(r.x)
+            + ",y="
+            + str(r.y)
+            + ",w="
+            + str(r.w)
+            + ",h="
+            + str(r.h)
+            + ")"
+        )
 
     def __round__(self, n=2):
         """Round the components of the rect."""
@@ -114,7 +132,12 @@ class Rect:
     # corners
     def getCorners(self):
         """Return the corners of the rect."""
-        return [self.x - self.w / 2, self.y - self.h / 2, self.x + self.w / 2, self.y + self.h / 2]
+        return [
+            self.x - self.w / 2,
+            self.y - self.h / 2,
+            self.x + self.w / 2,
+            self.y + self.h / 2,
+        ]
 
     def setCorners(self, corners):
         """Set the corners of the rect."""

@@ -13,8 +13,8 @@ import cv2
 import sys
 import os
 
-class Fourier:
 
+class Fourier:
     def transform(pts, ncfs, wo=2 * math.pi):
         """Apply the true fourier transform by
         returning a dictionary of the coefficients."""
@@ -26,7 +26,9 @@ class Fourier:
             # Compute each coefficient
             cn = 0
             for iw in range(npts):
-                w = iw / npts  # w is not a frequency but the variable of a parametric equation
+                w = (
+                    iw / npts
+                )  # w is not a frequency but the variable of a parametric equation
                 fw = complex(*pts[iw])
                 cn += fw * cmath.exp(-1j * n * w * wo)
             cn /= npts
@@ -41,10 +43,17 @@ class Fourier:
         pts = []
         # Compute all the points
         for it in range(npts):
-            t = it / npts  # t is not a time but the variable of a parametric equation of the final graph
+            t = (
+                it / npts
+            )  # t is not a time but the variable of a parametric equation of the final graph
             # Compute each point
             zpt = 0
-            for (n, cn) in cfs.items():  # Addition is commutative, even though the dictionary is unordered, the sum of the terms will be the same
+            for (
+                n,
+                cn,
+            ) in (
+                cfs.items()
+            ):  # Addition is commutative, even though the dictionary is unordered, the sum of the terms will be the same
                 zpt += cn * cmath.exp(1j * wo * n * t)
             pts.append((zpt.real, zpt.imag))
         return pts
@@ -70,14 +79,15 @@ class VisualFourier:
     """Show an application of the fourier transform."""
 
     # Instance methods
-    def __init__(self,
-                 context,
-                 image=None,
-                 coefficients=[],
-                 directory="../FourierObjects",
-                 filename="Fourier",
-                 coefficients_filename="fourier_coefficients.txt"
-                 ):
+    def __init__(
+        self,
+        context,
+        image=None,
+        coefficients=[],
+        directory="../FourierObjects",
+        filename="Fourier",
+        coefficients_filename="fourier_coefficients.txt",
+    ):
         """Initialization."""
         self.context = context
         self.coefficients = coefficients
@@ -98,7 +108,7 @@ class VisualFourier:
         self.mode = 0
         self.step = 0
         self.max_step = 1000
-        self.messages = ['drawing', 'construction', 'display']
+        self.messages = ["drawing", "construction", "display"]
         self.pause = False
         self.include = True  # Include the last point of the interpolation
 
@@ -159,19 +169,19 @@ class VisualFourier:
                 if event.key == K_SPACE or event.key == K_MENU or event.key == K_q:
                     self.setMode((self.mode + 1) % 3)
                 if event.key == K_0:
-                    self.show_polynomial = not(self.show_polynomial)
+                    self.show_polynomial = not (self.show_polynomial)
                 if event.key == K_1:
-                    self.show_image = not(self.show_image)
+                    self.show_image = not (self.show_image)
                 if event.key == K_2:
-                    self.show_drawing = not(self.show_drawing)
+                    self.show_drawing = not (self.show_drawing)
                 if event.key == K_3:
-                    self.show_display = not(self.show_display)
+                    self.show_display = not (self.show_display)
                 if event.key == K_4:
-                    self.show_vectors = not(self.show_vectors)
+                    self.show_vectors = not (self.show_vectors)
                 if event.key == K_5:
-                    self.show_circles = not(self.show_circles)
+                    self.show_circles = not (self.show_circles)
                 if event.key == K_6:
-                    self.show_sample = not(self.show_sample)
+                    self.show_sample = not (self.show_sample)
                 if event.key == K_r:
                     self.reset()
                 if event.key == K_z:
@@ -185,11 +195,11 @@ class VisualFourier:
                     # Save a picture the screen
                     self.screenshot(self.directory)
                 if event.key == K_p:
-                    self.pause = not(self.pause)
+                    self.pause = not (self.pause)
                 if event.key == K_f:
                     self.context.switch()
                 if event.key == K_c:
-                    self.show_camera = not(self.show_camera)
+                    self.show_camera = not (self.show_camera)
                     if self.show_camera:
                         self.context.camera.buildCapture()
                     else:
@@ -205,7 +215,8 @@ class VisualFourier:
 
             if event.type == VIDEORESIZE:
                 self.context.screen = pygame.display.set_mode(
-                    (event.w, event.h), RESIZABLE)
+                    (event.w, event.h), RESIZABLE
+                )
 
     def main(self):
         """Code inside the loop."""
@@ -233,8 +244,10 @@ class VisualFourier:
 
         if self.show_image and self.image:
             w, h = self.image.get_size()
-            r = h/w
-            self.context.draw.image(self.context.screen, self.image, (-1/2, r*1/2))
+            r = h / w
+            self.context.draw.image(
+                self.context.screen, self.image, (-1 / 2, r * 1 / 2)
+            )
         if self.show_camera:
             self.context.camera.show()
 
@@ -268,11 +281,13 @@ class VisualFourier:
             if self.show_sample:
                 self.drawPoints(self.sample, self.color_sample)
 
-        self.context.print("Time: " + str(self.time),
-                           position=(10, 10), size=35, conversion=False)
+        self.context.print(
+            "Time: " + str(self.time), position=(10, 10), size=35, conversion=False
+        )
         if self.pause:
-            self.context.print("Pause", position=(
-                sx - 100, 10), size=35, conversion=False)
+            self.context.print(
+                "Pause", position=(sx - 100, 10), size=35, conversion=False
+            )
         self.context.showConsole()
         self.context.flip()
 
@@ -285,7 +300,10 @@ class VisualFourier:
 
     def getVectors(self, graph):
         """Return the list of vectors."""
-        return [Vector.createFromTwoTuples(graph[i], graph[i + 1]) for i in range(len(graph) - 1)]
+        return [
+            Vector.createFromTwoTuples(graph[i], graph[i + 1])
+            for i in range(len(graph) - 1)
+        ]
 
     def showVectors(self, graph, vectors, color=colors.WHITE):
         """Show the vectors on the screen."""
@@ -313,14 +331,12 @@ class VisualFourier:
         self.display = []
         # t=Trajectory.createFromTuples(self.drawing)
         # l=t.sampleSegments(self.sample_number)
-        self.coefficients = Fourier.transform(
-            self.sample, self.coefficients_number)
+        self.coefficients = Fourier.transform(self.sample, self.coefficients_number)
 
     def setDisplayMode(self):
         """Set the attributes before starting the display mode."""
-        self.step = (self.max_step + int(self.include))
-        self.display = Fourier.inverseTransform(
-            self.coefficients, self.display_number)
+        self.step = self.max_step + int(self.include)
+        self.display = Fourier.inverseTransform(self.coefficients, self.display_number)
 
     def place(self):
         """Place a point."""
@@ -330,8 +346,7 @@ class VisualFourier:
     def updateSample(self):
         """Update the sample."""
         t = Trajectory.createFromTuples(self.drawing)
-        self.sample = t.sampleSegments(
-            self.sample_number, include=self.include)
+        self.sample = t.sampleSegments(self.sample_number, include=self.include)
 
     def screenshot(self):
         """Make a screenshot of the window."""
@@ -341,17 +356,17 @@ class VisualFourier:
     def dictionary(self):
         """Return the dictionary."""
         dictionary = {
-            "coefficients":     self.coefficients,
-            "drawing":          self.drawing,
-            "construction":     self.construction,
-            "display":          self.display
+            "coefficients": self.coefficients,
+            "drawing": self.drawing,
+            "construction": self.construction,
+            "display": self.display,
         }
         return dictionary
 
     def save(self):
         """Save the sampled graph and fourier's coefficients."""
         path = self.directory + "/" + self.filename
-        pickle.dump(self.dictionary, open(path, 'wb'))
+        pickle.dump(self.dictionary, open(path, "wb"))
         self.context.console.append("The Fourier components are saved.")
 
     def saveCoefficients(self):
@@ -359,14 +374,16 @@ class VisualFourier:
         path = self.directory + "/" + self.coefficients_filename
         with open(path, mode="w", encoding="utf-8") as file:
             file.write(
-                "\n".join([f"{k}:{v}" for k, v in self.dictionary["coefficients"].items()]))
-            self.context.console.append(
-                "The Fourier coefficients are written.")
+                "\n".join(
+                    [f"{k}:{v}" for k, v in self.dictionary["coefficients"].items()]
+                )
+            )
+            self.context.console.append("The Fourier coefficients are written.")
 
     def load(self):
         """Load the fourier's coefficients."""
         path = self.directory + "/" + self.filename
-        dictionary = pickle.load(open(path, 'rb'))
+        dictionary = pickle.load(open(path, "rb"))
         self.coefficients = dictionary["coefficients"]
         self.display = dictionary["display"]
         self.construction = dictionary["construction"]
@@ -383,7 +400,7 @@ class VisualFourier:
     # Graphical functions
     def distance(self, p1, p2):
         """Return the distance between 2 points."""
-        return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+        return math.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
     def drawVectors(self, index, color):
         """Draw the vectors from the points."""
@@ -405,7 +422,8 @@ class VisualFourier:
         graph = self.graphs[index]
         if len(graph) > 1:
             self.context.draw.lines(
-                self.context.screen, color, graph, connected, width, conversion)
+                self.context.screen, color, graph, connected, width, conversion
+            )
 
     def drawPolynomial(self, index, color, precision=200):
         """Draw the polynomial interpolation of the points."""
@@ -469,12 +487,13 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         image_name = sys.argv[1]
     else:
-        logging.warning("You must place your image in the FourierImages folder before using it.""")
-        image_name = input('image name:')
+        logging.warning(
+            "You must place your image in the FourierImages folder before using it." ""
+        )
+        image_name = input("image name:")
 
     image = os.path.join(folder, image_name)
     print(image)
-
 
     context = Context(name="Application of the Fourier Transform.", fullscreen=False)
     fourier = VisualFourier(context, image=image, directory="../FourierObjects")

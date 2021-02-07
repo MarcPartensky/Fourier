@@ -84,7 +84,7 @@ class oldManager:  # This manager is deprecated
         self.show()
 
     def debug(self):
-        self.context.console(str(ContextManager.__dict__['react'].__dict__))
+        self.context.console(str(ContextManager.__dict__["react"].__dict__))
 
     def update(self):
         """Update the context manager."""
@@ -145,7 +145,8 @@ class Manager:
     def __str__(self):
         """Return the string representation of the manager."""
         return type(self).__name__ + "(\n{}\n)".format(
-            "\n".join(map(lambda x: ":".join(map(str, x)), self.__dict__.items())))
+            "\n".join(map(lambda x: ":".join(map(str, x)), self.__dict__.items()))
+        )
 
     def __call__(self):
         """Call the main loop, this method is to be overloaded."""
@@ -275,8 +276,16 @@ class Manager:
 
     def reactLowerCase(self, key):
         """React when typing in lower case."""
-        d = {K_COMMA: ",", K_PERIOD: ".", K_SEMICOLON: ";", K_LEFTBRACKET: "[",
-             K_RIGHTBRACKET: "]", 39: "'", 45: "-", K_EQUALS: "="}
+        d = {
+            K_COMMA: ",",
+            K_PERIOD: ".",
+            K_SEMICOLON: ";",
+            K_LEFTBRACKET: "[",
+            K_RIGHTBRACKET: "]",
+            39: "'",
+            45: "-",
+            K_EQUALS: "=",
+        }
         if 48 <= key <= 57:
             self.write(self.numbers[key - 48])
         elif 97 <= key <= 122:
@@ -296,8 +305,7 @@ class Manager:
 
     def reactUpperCase(self, key):
         """React to a key when typing in uppercase."""
-        d = {59: ":''", 44: "<", 46: ">", 47: "?",
-             45: "_", 39: "\"", 61: "+"}
+        d = {59: ":''", 44: "<", 46: ">", 47: "?", 45: "_", 39: '"', 61: "+"}
         if 48 <= key <= 57:
             self.write(self.caps_numbers[key - 48])
         elif 97 <= key <= 122:
@@ -314,7 +322,9 @@ class Manager:
 
     def delete(self, n=1):
         """Delete some content."""
-        self.context.console.lines[-1].content[-1] = self.context.console.lines[-1].content[-1][:-n]
+        self.context.console.lines[-1].content[-1] = self.context.console.lines[
+            -1
+        ].content[-1][:-n]
         self.context.console.lines[-1].refresh()
 
     def reactMain(self, key):
@@ -345,10 +355,10 @@ class Manager:
             self.context.camera.screen_writer.release()
         self.context.camera.switchScreenWriting()
         if self.context.camera.screen_writing:
-            self.context.console('The screen is being written.')
+            self.context.console("The screen is being written.")
         else:
-            self.context.console('The screen video has been released')
-            self.context.console('and is not being written anymore.')
+            self.context.console("The screen video has been released")
+            self.context.console("and is not being written anymore.")
 
     def switchCaptureWriting(self):
         """Switch the capture writing mode."""
@@ -356,26 +366,26 @@ class Manager:
             self.context.camera.capture_writer.release()
         self.context.camera.switchCaptureWriting()
         if self.context.camera.capture_writing:
-            self.context.console('The capture is being written.')
+            self.context.console("The capture is being written.")
         else:
-            self.context.console('The capture video has been released')
-            self.context.console('and is not being written anymore.')
+            self.context.console("The capture video has been released")
+            self.context.console("and is not being written anymore.")
 
     def switchPause(self):
         """React to a pause event."""
         self.pause = not self.pause
         if self.pause:
-            self.context.console('The system is paused.')
+            self.context.console("The system is paused.")
         else:
-            self.context.console('The system is unpaused.')
+            self.context.console("The system is unpaused.")
 
     def switchCapture(self):
         """React to a capture event."""
         self.context.camera.switchCapture()
         if self.context.camera.capturing:
-            self.context.console('The camera capture is turned on.')
+            self.context.console("The camera capture is turned on.")
         else:
-            self.context.console('The camera capture is turned off.')
+            self.context.console("The camera capture is turned off.")
 
     def switchFullscreen(self):
         """React to a fullscreen event."""
@@ -651,6 +661,7 @@ class ActivityManager(Manager):
 
 if __name__ == "__main__":
     from myentity import Entity
+
     m = EntityManager.random(build=False)
     print(m)
     # cm()
