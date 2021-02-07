@@ -43,13 +43,13 @@ Then give your image:
 
 There are 3 modes in this program:
 
-* Mode 1: *Sampling*
+* Mode 1: **Sampling**
 Sample or draw a picture.
 
-* Mode 2: *Drawing*
+* Mode 2: **Drawing**
 Watch the epicycles simulation which uses fourier transform.
 
-* Mode 3: *Display*
+* Mode 3: **Display**
 Get the output image directly without waiting for the simulation.
 
 # Controls
