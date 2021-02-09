@@ -3,3 +3,5 @@ __pycache__
 build
 .DS_Store
 Dockerfile
+FourierObjects/*
+FourierObjects/*/

@@ -1,8 +1,9 @@
-FROM python:3.8.3:alpine
+FROM python:3.8.3-alpine
 
-ADD . /Fourier
-WORKDIR /Fourier
+COPY . .
+WORKDIR .
 
+RUN pip install -U pip
 RUN pip install -r requirements.txt
 
 CMD ["python", "myfouriervf.py"]
