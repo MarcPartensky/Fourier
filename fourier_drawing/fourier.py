@@ -506,6 +506,7 @@ if __name__ == "__main__":
 
     context = Context(name="Application of the Fourier Transform.", fullscreen=False)
     fourier = VisualFourier(context, image=image, directory="../FourierObjects")
-    fourier.load()
+    if fourier.filename in os.listdir(fourier.directory):
+        fourier.load()
     fourier()
     fourier.save()

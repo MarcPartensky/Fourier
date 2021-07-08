@@ -9,6 +9,9 @@ opencv-python = "*"
 pygame = "*"
 
 [dev-packages]
+jedi = "*"
+pylint = "*"
+black = "*"
 
 [requires]
 python_version = "3.9"

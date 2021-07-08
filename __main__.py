@@ -26,6 +26,8 @@ directory_path = os.path.abspath(directory)
 
 context = Context(name="Application of the Fourier Transform.", fullscreen=False)
 fourier = VisualFourier(context, image=image_path, directory=directory_path)
-fourier.load()
+# Load fourier coefficients if some already exist
+if fourier.filename in os.listdir(fourier.directory):
+    fourier.load()
 fourier()
 fourier.save()
