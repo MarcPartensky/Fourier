@@ -7,7 +7,7 @@ __pycache__/
 .DS_Store
 .vim/coc-settings.json
 FourierObjects/*
-FourierObjects/*/
+!FourierObjects/.gitignore
 ._*
 fourier_drawing/._*
 FourierImages/._*
