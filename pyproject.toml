@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fourier_drawing"
-version = "0.1.5"
+version = "0.1.6"
 description = ""
 authors = ["Marc Partensky <marc.partensky@gmail.com>"]
 readme = "README.md"
