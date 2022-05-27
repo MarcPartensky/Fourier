@@ -11,4 +11,5 @@ RUN apt-get install -y libx11-dev libgl-dev libgtk-3-dev
 RUN pip install -U pip
 RUN pip install -r requirements.txt
 
+ENTRYPOINT ["python", "/opt/__main__.py"]
 CMD ["python", "/opt/__main__.py"]

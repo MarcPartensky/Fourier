@@ -40,6 +40,7 @@ Then give your image:
 ```
 
 # Run with docker
+
 ```sh
 # Download the docker-compose.yml file and cd into its parent folder
 # Put your image in the FourierImages folder then run
@@ -56,6 +57,15 @@ Or choose your own folder
 docker-compose run --rm \
     -v ./FourierImages:/opt/FourierImages \
     fourier image.png
+```
+
+Or run the full docker command
+```sh
+docker run --rm \
+    -v ./FourierImages:/opt/FourierImages \
+    -v ./FourierObjects:/opt/FourierObjects \
+    --device /dev/dri
+    -e DISPLAY
 ```
 
 # Description
