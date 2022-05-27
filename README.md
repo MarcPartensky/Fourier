@@ -42,6 +42,15 @@ Then give your image:
 # Run with docker
 ```sh
 # Download the docker-compose.yml file and cd into its parent folder
+# Put your image in the FourierImages folder then run
+# Replace 'image.png' by your own image filename
+docker-compose run --rm fourier image.png
+```
+
+Or choose your own folder
+
+```sh
+# Download the docker-compose.yml file and cd into its parent folder
 # Replace the first occurence of 'FourierImages' by your custom image folder
 # Replace 'image.png' by your own image too
 docker-compose run --rm \
