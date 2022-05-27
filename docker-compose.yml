@@ -1,10 +1,12 @@
 services:
   fourier:
     image: marcpartensky/fourier
-    restart: unless-stopped
     build:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - "./FourierImages:/opt/FourierImages"
-      - "./FourierObjects:/opt/FourierObjects"
+      - ./FourierImages:/opt/FourierImages
+      - ./FourierObjects:/opt/FourierObjects
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      DISPLAY: ${DISPLAY}
