@@ -9,7 +9,7 @@ Draw a picture or sample one, press space, then watch an epic simulation of epic
 
 ```sh
 #Clone the repository
-git clone git@github.com:MarcPartensky/Fourier.git
+git clone https://github.com/MarcPartensky/Fourier.git
 cd Fourier
 
 #Install requirements
