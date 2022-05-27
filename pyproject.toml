@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fourier_drawing"
+version = "0.1.3"
+description = ""
+authors = ["Marc Partensky <marc.partensky@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pygame = "^2.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
