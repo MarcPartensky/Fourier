@@ -1,0 +1,11 @@
+.github/
+.git/
+tests/
+FourierImages/
+FourierObjects/
+dist/
+setup.py
+poetry.lock
+pyproject.toml
+.gitignore
+__main__.spec
