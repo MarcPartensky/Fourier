@@ -4,7 +4,7 @@ Draw a picture or sample one, press space, then watch an epic simulation of epic
 
 # Demo
 
-![https://www.youtube.com/watch?v=86bYtJCwQ_o](https://cdn.discordapp.com/attachments/507519157387132940/808039024022257694/fourier.gif)
+[![Fourier Animation](https://cdn.discordapp.com/attachments/507519157387132940/808039024022257694/fourier.gif)](https://www.youtube.com/watch?v=86bYtJCwQ_o)
 # Install
 
 ```sh
