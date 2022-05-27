@@ -3,6 +3,8 @@ FROM python:3.9.4-slim
 COPY . /opt
 WORKDIR /opt
 
+RUN mkdir FourierImages FourierObjects
+
 LABEL maintainer="marc.partensky@gmail.com"
 LABEL source="https://github.com/marcpartensky/fourier"
 RUN apt-get update
