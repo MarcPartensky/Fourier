@@ -39,6 +39,16 @@ Then give your image:
 > image name:image.png
 ```
 
+# Run with docker
+```
+# Replace the first occurence of 'FourierImages' by your custom image folder
+# Replace 'rodolphe.jpg' by your own image too
+docker-compose run \
+    -v ./FourierImages:/opt/FourierImages \
+    --entrypoint './__main__.py rodolphe.jpg' \
+    fourier
+```
+
 # Description
 
 There are 3 modes in this program:
