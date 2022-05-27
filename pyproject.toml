@@ -4,6 +4,7 @@ version = "0.1.5"
 description = ""
 authors = ["Marc Partensky <marc.partensky@gmail.com>"]
 readme = "README.md"
+repository = "https://github.com/marcpartensky/fourier"
 
 [tool.poetry.dependencies]
 python = "^3.10"
