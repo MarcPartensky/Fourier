@@ -7,7 +7,7 @@ Draw a picture or sample one, press space, then watch an epic simulation of epic
 ![https://www.youtube.com/watch?v=86bYtJCwQ_o](https://cdn.discordapp.com/attachments/507519157387132940/808039024022257694/fourier.gif)
 # Install
 
-```bash
+```sh
 #Clone the repository
 git clone git@github.com:MarcPartensky/Fourier.git
 cd Fourier
@@ -22,25 +22,25 @@ Put your model image `image.png` in the `FourierImages` folder.
 
 * Option 1: Give image at launch.
 
-```bash
+```sh
 python __main__.py image.png
 ```
 
 * Option 2: Launch then give the image.
 
-```bash
+```sh
 python __main__.py
 > image name:
 ```
 
 Then give your image:
 
-```bash
+```sh
 > image name:image.png
 ```
 
 # Run with docker
-```
+```sh
 # Replace the first occurence of 'FourierImages' by your custom image folder
 # Replace 'rodolphe.jpg' by your own image too
 docker-compose run \
