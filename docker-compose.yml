@@ -12,3 +12,4 @@ services:
       DISPLAY: ${DISPLAY}
     devices:
       - /dev/dri
+    entrypoint: ./__main__.py rodolphe.jpg
