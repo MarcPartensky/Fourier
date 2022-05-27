@@ -46,8 +46,7 @@ Then give your image:
 # Replace 'image.png' by your own image too
 docker-compose run --rm \
     -v ./FourierImages:/opt/FourierImages \
-    --entrypoint './__main__.py image.png' \
-    fourier
+    fourier image.png
 ```
 
 # Description
