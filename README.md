@@ -59,13 +59,16 @@ docker-compose run --rm \
     fourier image.png
 ```
 
-Or run the full docker command
+Or run the full docker command without the docker-compose.yml file
+
 ```sh
 docker run --rm \
-    -v ./FourierImages:/opt/FourierImages \
-    -v ./FourierObjects:/opt/FourierObjects \
-    --device /dev/dri
-    -e DISPLAY
+-v $PWD/FourierImages:/opt/FourierImages \
+-v $PWD/FourierObjects:/opt/FourierObjects \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+--device /dev/dri \
+-e DISPLAY \
+marcpartensky/fourier rodolphe.jpg
 ```
 
 # Description
