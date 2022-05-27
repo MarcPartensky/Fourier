@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 pygame = "^2.1.2"
 numpy = "^1.22.4"
+opencv-python = "^4.5.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
