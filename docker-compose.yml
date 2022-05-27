@@ -1,0 +1,7 @@
+services:
+  fourier:
+    image: marcpartensky/fourier
+    restart: unless-stopped
+    volumes:
+      - "./FourierImages:/opt/FourierImages"
+      - "./FourierObjects:/opt/FourierObjects"
