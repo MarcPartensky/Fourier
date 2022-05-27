@@ -43,10 +43,10 @@ Then give your image:
 ```sh
 # Download the docker-compose.yml file and cd into its parent folder
 # Replace the first occurence of 'FourierImages' by your custom image folder
-# Replace 'rodolphe.jpg' by your own image too
-docker-compose run -f docker-compose.yml --rm \
+# Replace 'image.png' by your own image too
+docker-compose run --rm \
     -v ./FourierImages:/opt/FourierImages \
-    --entrypoint './__main__.py rodolphe.jpg' \
+    --entrypoint './__main__.py image.png' \
     fourier
 ```
 
