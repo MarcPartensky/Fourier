@@ -2,6 +2,9 @@ services:
   fourier:
     image: marcpartensky/fourier
     restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     volumes:
       - "./FourierImages:/opt/FourierImages"
       - "./FourierObjects:/opt/FourierObjects"
