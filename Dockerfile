@@ -1,6 +1,7 @@
 FROM python:3.9.4-slim
 
 COPY . /opt
+WORKDIR /opt
 
 LABEL maintainer="marc.partensky@gmail.com"
 LABEL source="https://github.com/marcpartensky/fourier"
