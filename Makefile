@@ -1,3 +1,5 @@
+run:
+	poetry run python .
 publish: update
 	poetry build
 	poetry publish
