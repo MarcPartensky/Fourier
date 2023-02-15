@@ -1,8 +1,11 @@
 #!/usr/bin/env python
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+
 from fourier_drawing.context import Context
 from fourier_drawing.fourier import VisualFourier
 
-import os
+
 import logging
 import sys
 
@@ -13,9 +16,11 @@ if len(sys.argv) > 1:
     image_name = sys.argv[1]
 else:
     logging.warning(
-        "You must place your image in the FourierImages folder before using it." ""
+        "You must place your image in the FourierImages folder before using it.\n" ""
     )
-    image_name = input("image name:")
+    print("Choose an image:")
+    print(*os.listdir(folder))
+    image_name = input("> ")
 
 image_path = os.path.abspath(image_name)
 if not os.path.exists(image_path):
